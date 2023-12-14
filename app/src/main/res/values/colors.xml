@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="Primary">#131EEA</color>
+    <color name="primaryDark">#131EEA</color>
+    <color name="accent">#f13413</color>
+    <color name="layerDark">#d6000000</color>
+    <color name="layerSemiDark">#60000000</color>
+    <color name="textPrimary">#212121</color>
+    <color name="textHint">#808080</color>
+    <color name="GYellow">#EAE4AF</color>
+    <color name="GBlue">#7A7AE4</color>
+    <color name="GGreen">#9EE69E</color>
+    <color name="blue">#3A86B7</color>
+</resources>

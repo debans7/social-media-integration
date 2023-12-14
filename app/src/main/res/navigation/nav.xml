@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.example.socialmediaintegration.HomeScreen"
+        android:label="fragment_home_screen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_google_fragment"
+            app:destination="@id/google_fragment" />
+        <action
+            android:id="@+id/action_homeScreen_to_facebook_fragment"
+            app:destination="@id/facebook_fragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/google_fragment"
+        android:name="com.example.socialmediaintegration.google_fragment"
+        android:label="fragment_google_fragment"
+        tools:layout="@layout/fragment_google_fragment" >
+        <action
+            android:id="@+id/action_google_fragment_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/facebook_fragment"
+        android:name="com.example.socialmediaintegration.facebook_fragment"
+        android:label="fragment_facebook_fragment"
+        tools:layout="@layout/fragment_facebook_fragment" >
+        <action
+            android:id="@+id/action_facebook_fragment_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/homeScreen" />
+    </fragment>
+
+</navigation>
