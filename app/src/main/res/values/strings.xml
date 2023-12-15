@@ -13,6 +13,8 @@
     <string name="facebook_app_id">376517311444976</string>
     <string name="fb_login_protocol_scheme">f3765173114449764</string>
     <string name="facebook_client_token">56789</string>
+    <string name="social_media_image">social media image</string>
+    <string name="designed_by_debangshu_chandra">Designed by Debangshu Chandra</string>
 
 
 </resources>

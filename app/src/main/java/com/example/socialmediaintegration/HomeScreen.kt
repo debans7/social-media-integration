@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -49,9 +50,19 @@ class HomeScreen : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val accessToken = AccessToken.getCurrentAccessToken()
         val view = inflater.inflate(R.layout.fragment_home_screen, container, false)
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build()
         val gsc =GoogleSignIn.getClient(requireContext(),gso)
+
+        if(GoogleSignIn.getLastSignedInAccount(requireContext())!=null){
+            gNavigate()
+        }
+        else if(accessToken!=null && !accessToken.isExpired){
+            fNavigate()
+        }
+
+
         view.findViewById<SignInButton>(R.id.googleLogin).setOnClickListener {
             gSignIn(gsc)
         }
@@ -67,7 +78,7 @@ class HomeScreen : Fragment() {
                 }
 
                 override fun onSuccess(result: LoginResult) {
-                    findNavController().navigate(R.id.action_homeScreen_to_facebook_fragment)
+                    fNavigate()
                 }
 
 
@@ -81,6 +92,9 @@ class HomeScreen : Fragment() {
         return view
     }
 
+    private fun fNavigate() {
+        findNavController().navigate(R.id.action_homeScreen_to_facebook_fragment)
+    }
 
 
     private fun fSignIn() {
@@ -109,10 +123,14 @@ class HomeScreen : Fragment() {
     private fun handleSignInRequest(task : Task<GoogleSignInAccount>) {
         try {
             task.getResult(ApiException::class.java)
-            findNavController().navigate(R.id.action_homeScreen_to_google_fragment)
+            gNavigate()
         }
         catch(E : ApiException){
             Toast.makeText(requireContext(), "Something went wrong", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun gNavigate() {
+        findNavController().navigate(R.id.action_homeScreen_to_google_fragment)
     }
 }
